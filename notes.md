@@ -50,3 +50,29 @@ the user sign in or sign up process is easy we look the database , if there are 
    - The component conditionally renders a message based on the `formState.message` value. This provides immediate feedback to the user after form submission, indicating whether the sign-in was successful or if there was an error.
 
 Overall, the `useFormState` hook simplifies form handling by encapsulating state management and submission logic, making the component more organized and easier to maintain.
+
+---
+
+---
+
+# Route Slots {parallel routes}
+
+its advenced route startegy
+
+its uses @ symbol
+its like rendering multiple pages within the same route
+each @test have its own error , loading , page files
+if that test route {slot }have a nested route and we navigate to it will stay and the changes will be applied
+
+we will recieve the slots on the layout props
+
+we should have on the slot route : default.tsx , loading , error , page ,
+default are use as fallback , if we have some routes within the slot it and we do hard reload it wont be able to maintain the state so it will use the fallback
+default also need to be in the route who uses the parallel
+
+page , default on the slots should be the same
+
+we can show slot depend on the user role or any similar things
+you can return null on the route who uses slots on default.tsx , page.tsx
+
+`there is something cool and so powerful we can do which is that grid layout  SHELL `

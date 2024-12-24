@@ -1,9 +1,9 @@
 'use client'
 
-import Image from 'next/image'
-import Link from 'next/link'
 import Logo from '@/images/pardy.png'
 import { Button } from '@nextui-org/react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const links = [
   { route: '/dashboard', name: 'Home' },
@@ -36,7 +36,7 @@ const Side = () => {
           </div>
         ))}
       </div>
-      <div className="absolute bottom-0 w-full left-0 px-4">
+      <div className="absolute bottom-4 w-full left-0 px-4">
         <Button fullWidth variant="ghost">
           Sign Out
         </Button>
