@@ -2,8 +2,8 @@
 import { registerUser } from '@/actions/auth'
 import { Input } from '@nextui-org/react'
 import Link from 'next/link'
-import Submit from './Submit'
 import { useFormState } from 'react-dom'
+import Submit from './Submit'
 const initialState = {
   message: '',
 }
@@ -29,8 +29,8 @@ const SignupForm = () => {
         required
       />
       {formState?.message && (
-        <div className="text-red-500 p-2 bg-red-300 border border-red-700">
-          {formState.message}
+        <div className="text-red-500 py-1 px-2 rounded-md ">
+          {formState.message}!
         </div>
       )}
       <Submit btnProps={{ size: 'lg', color: 'primary' }}>Sign up</Submit>

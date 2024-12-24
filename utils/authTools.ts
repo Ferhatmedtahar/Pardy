@@ -1,9 +1,9 @@
-import 'server-only'
-import jwt from 'jsonwebtoken'
 import { db } from '@/db/db'
-import { eq } from 'drizzle-orm'
 import { users } from '@/db/schema'
 import bcrypt from 'bcrypt'
+import { eq } from 'drizzle-orm'
+import jwt from 'jsonwebtoken'
+import 'server-only'
 
 const SECRET = 'use_an_ENV_VAR'
 
@@ -54,7 +54,6 @@ export const signin = async ({
 
   return { user, token }
 }
-
 export const signup = async ({
   email,
   password,
@@ -62,7 +61,18 @@ export const signup = async ({
   email: string
   password: string
 }) => {
+  const existingUser = await db.query.users.findFirst({
+    where: eq(users.email, email),
+  })
+
+  if (existingUser) {
+    throw new Error('A user with this email already exists')
+  }
+
+  // Hash the password
   const hashedPW = await hashPW(password)
+
+  // Insert the new user
   const rows = await db
     .insert(users)
     .values({ email, password: hashedPW })
@@ -74,10 +84,8 @@ export const signup = async ({
 
   const user = rows[0]
   const token = createTokenForUser(user.id)
-
   return { user, token }
 }
-
 export const hashPW = (password: string) => {
   return bcrypt.hash(password, 10)
 }
