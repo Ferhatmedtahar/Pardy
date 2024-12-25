@@ -78,3 +78,14 @@ you can return null on the route who uses slots on default.tsx , page.tsx
 `there is something cool and so powerful we can do which is that grid layout  SHELL `
 
 # server side feching data
+
+data managment :there are alot of benefits when we use server component to fetch data , one of them is that the server components have direct access to resources and enhance security , and more effciency
+
+- when we use server componets for data managment like fetching (getting), Mutating(updating, creating , deleting ) we need to revalidate the cache
+
+- we get also scoped data fetching , not like normal we would fetch on global and pass as prop
+
+- Streaming and Suspense Integration , incremental delivery
+
+-- async server components , caching
+import "server-only";
