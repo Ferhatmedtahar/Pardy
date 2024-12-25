@@ -1,5 +1,4 @@
 'use client'
-
 import Shell from '@/components/Shell'
 import { usePathname } from 'next/navigation'
 
@@ -18,7 +17,10 @@ const Dashboard = ({
     <Shell>
       {path === '/dashboard' ? (
         <div className="flex w-full h-full">
-          <div className="w-1/2 border-r border-default-50">{rsvps}</div>
+          <div className="w-1/2 border-r border-default-50">
+            {rsvps}
+            {/* <Link href="/dashboard/testt">testt</Link> */}
+          </div>
           <div className="w-1/2 flex flex-col">
             <div className="border-b border-default-50 w-full h-1/2">
               {events}
@@ -27,7 +29,13 @@ const Dashboard = ({
           </div>
         </div>
       ) : (
-        <div>{children}</div>
+        <div>
+          {children}
+          {/* <div className="flex gap-4 py-4">
+            {rsvps}
+            {events}
+          </div> */}
+        </div>
       )}
     </Shell>
   )

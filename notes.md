@@ -76,3 +76,5 @@ we can show slot depend on the user role or any similar things
 you can return null on the route who uses slots on default.tsx , page.tsx
 
 `there is something cool and so powerful we can do which is that grid layout  SHELL `
+
+# server side feching data
