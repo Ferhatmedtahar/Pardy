@@ -4,22 +4,30 @@ import { eq, sql } from 'drizzle-orm'
 import 'server-only'
 import { delay } from './delay'
 
-export const getAttendeesCountForDashboard = async (userId: string) => {
-  await delay()
-  const counts = await db
-    .select({
-      totalAttendees: sql`count(distinct ${attendees.id})`,
-    })
-    .from(events)
-    .leftJoin(rsvps, eq(rsvps.eventId, events.id))
-    .leftJoin(attendees, eq(attendees.id, rsvps.attendeeId))
-    .where(eq(events.createdById, userId))
-    .groupBy(events.id)
-    .execute()
+import { memoize } from 'nextjs-better-unstable-cache'
 
-  const total = counts.reduce(
-    (acc, count: any) => acc + count.totalAttendees,
-    0
-  )
-  return total
-}
+export const getAttendeesCountForDashboard = memoize(
+  async (userId: string) => {
+    await delay()
+    const counts = await db
+      .select({
+        totalAttendees: sql<number>`count(distinct ${attendees.id})`,
+      })
+      .from(events)
+      .leftJoin(rsvps, eq(rsvps.eventId, events.id))
+      .leftJoin(attendees, eq(attendees.id, rsvps.attendeeId))
+      .where(eq(events.createdById, userId))
+      .groupBy(events.id)
+      .execute()
+
+    const total = counts.reduce((acc, count) => acc + count.totalAttendees, 0)
+    return total
+  },
+  {
+    persist: true,
+    revalidateTags: () => ['dashboard:attendees'],
+    suppressWarnings: true,
+    log: ['datacache', 'verbose', 'dedupe'],
+    logid: 'dashboard:attendees',
+  }
+)

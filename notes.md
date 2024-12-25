@@ -89,3 +89,5 @@ data managment :there are alot of benefits when we use server component to fetch
 
 -- async server components , caching
 import "server-only";
+
+we can do `per caching request` its for request like if we send the same request , get the same response
