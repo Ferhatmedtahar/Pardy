@@ -9,6 +9,7 @@ const initialState = {
 }
 const SigninForm = () => {
   const [formState, action] = useFormState<{ message: string | null }>(
+    /*@ts-ignore-next-line*/
     signIn,
     initialState
   )
