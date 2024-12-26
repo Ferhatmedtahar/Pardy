@@ -12,7 +12,7 @@ const links = [
   { route: '/dashboard', name: 'Home' },
   { route: '/dashboard/events', name: 'Events' },
   { route: '/dashboard/guests', name: 'Guests' },
-  { route: '/dashboard/activity', name: 'Activity' },
+  // { route: '/dashboard/activity', name: 'Activity' },
   { route: '/dashboard/settings', name: 'Settings' },
 ]
 const isActive = (path: string, route: string) => {
@@ -28,7 +28,7 @@ const Side = () => {
   const path = usePathname()
   const activeClass = 'bg-primary hover:bg-primary'
   return (
-    <div className="w-full h-full px-3 relative">
+    <div className="w-full h-full px-3 relative text-white ">
       <div className="mb-12">
         <figure className="w-[80px] pt-4">
           <Image src={Logo} alt="pardy" />
@@ -39,7 +39,7 @@ const Side = () => {
           <div className="w-full" key={link.route}>
             <Link href={link.route}>
               <div
-                className={`w-full h-full py-2 px-2 hover:bg-content1 rounded-lg ${
+                className={`w-full h-full text-white py-2 px-2 hover:bg-content1 rounded-lg ${
                   isActive(path, link.route) ? activeClass : ''
                 }`}
               >

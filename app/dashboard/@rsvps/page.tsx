@@ -8,7 +8,11 @@ const statusColors = {
   maybe: 'warning',
   'not-going': 'danger',
 }
-type rsvpType = { id: string; status: 'primary' | 'warning' | 'danger' }
+
+type RsvpType = { id: string; status: 'going' | 'maybe' | 'not-going' }
+type EventType = { id: string; name: string }
+type AttendeeType = { name: string }
+
 const RsvpsSlot = async () => {
   const user = await getCurrentUser()
   const data = await getrsvps(user.id)
@@ -24,26 +28,46 @@ const RsvpsSlot = async () => {
               events,
               attendees,
             }: {
-              rsvps: any
-              events: any
-              attendees: any
+              rsvps: RsvpType | null
+              events: EventType | null
+              attendees: AttendeeType | null
             }) => (
               <div
-                key={rsvps.id}
+                key={rsvps?.id || Math.random()}
                 className="border-b border-default-100 p-2 flex gap-2"
               >
-                <span>{attendees.name}</span>
+                <span>{attendees?.name || 'Unknown Attendee'}</span>
                 <span>
-                  <Chip size="sm" color={statusColors[rsvps?.status]}>
-                    {rsvps?.status}
-                  </Chip>
+                  {rsvps ? (
+                    <Chip
+                      size="sm"
+                      color={
+                        statusColors[rsvps.status] as
+                          | 'primary'
+                          | 'warning'
+                          | 'danger'
+                      }
+                    >
+                      {rsvps.status}
+                    </Chip>
+                  ) : (
+                    <Chip size="sm" color="default">
+                      No Status
+                    </Chip>
+                  )}
                 </span>
                 <span>
-                  <Link href={`/dashboard/events/${events.id}`}>
+                  {events ? (
+                    <Link href={`/dashboard/events/${events.id}`}>
+                      <Chip size="sm" variant="faded">
+                        {events.name}
+                      </Chip>
+                    </Link>
+                  ) : (
                     <Chip size="sm" variant="faded">
-                      {events?.name}
+                      Unknown Event
                     </Chip>
-                  </Link>
+                  )}
                 </span>
               </div>
             )

@@ -4,11 +4,11 @@ import { Input } from '@nextui-org/react'
 import Link from 'next/link'
 import { useFormState } from 'react-dom'
 import Submit from './Submit'
-const initialState = {
+const initialState: { message: string } = {
   message: '',
 }
 const SignupForm = () => {
-  const [formState, action] = useFormState<{ message: string | null }>(
+  const [formState, action] = useFormState<{ message: string }>(
     registerUser,
     initialState
   )

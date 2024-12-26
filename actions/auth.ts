@@ -18,7 +18,10 @@ const authSchema = z.object({
   }),
 })
 
-export async function registerUser(prevState: any, formData: FormData) {
+export async function registerUser(
+  prevState: { message: string },
+  formData: FormData
+) {
   try {
     const data = authSchema.parse({
       email: formData.get('email'),
@@ -26,17 +29,17 @@ export async function registerUser(prevState: any, formData: FormData) {
     })
     const { token } = await signup(data)
     cookies().set(COOKIE_NAME, token)
+    // return { ...prevState, message: 'Successfully signed up' }
+    redirect('/dashboard')
   } catch (error: any | z.ZodError) {
     if (error instanceof z.ZodError) {
-      // Handle validation errors
       const validationErrors = error.errors.map((e) => e.message).join(', ')
-      return { message: validationErrors } // Pass validation error messages to the form state
+      return { ...prevState, message: validationErrors }
     }
 
     console.error(error)
-    return { message: error?.message } // Pass any other error messages to the form state
+    return { ...prevState, message: error?.message }
   }
-  redirect('/dashboard')
 }
 
 export async function signIn(prevState: any, formData: FormData) {

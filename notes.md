@@ -123,3 +123,13 @@ we can do useTransition when switching between tabs or showing some data which a
 on demand revalidation
 
 to opt out from cache we use revalidate =0 or no store
+
+---
+
+things to check and learn more about :
+intercepting routes , fetch function on server side ,
+pre load and pre connect
+a11y , performance , styling
+route handlers under api folder
+db connect and config orm
+ui state managment and remote state managment
