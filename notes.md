@@ -91,3 +91,16 @@ data managment :there are alot of benefits when we use server component to fetch
 import "server-only";
 
 we can do `per caching request` its for request like if we send the same request , get the same response
+
+---
+
+we have active route and middleware
+the middleware allow us to do authentication or setting a header or cokkie before going to the page
+
+if we dont have it and check on the page this will be very bad bcs it will load the page which is bad for us and the performance than it will redirect
+
+we can do route based protection based on the user role
+
+- to do that we need to know where the role is stored like cookie or figure out where to store the admin on the cookie
+  redreict , rewrite url ,
+  dont forget the matcher
