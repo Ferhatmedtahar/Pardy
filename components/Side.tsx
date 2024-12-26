@@ -1,6 +1,8 @@
 'use client'
 
+import { signout } from '@/actions/signout'
 import Logo from '@/images/pardy.png'
+
 import { Button } from '@nextui-org/react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -25,7 +27,6 @@ const isActive = (path: string, route: string) => {
 const Side = () => {
   const path = usePathname()
   const activeClass = 'bg-primary hover:bg-primary'
-
   return (
     <div className="w-full h-full px-3 relative">
       <div className="mb-12">
@@ -49,7 +50,7 @@ const Side = () => {
         ))}
       </div>
       <div className="absolute bottom-4 w-full left-0 px-4">
-        <Button fullWidth variant="ghost">
+        <Button fullWidth variant="ghost" onClick={() => signout()}>
           Sign Out
         </Button>
       </div>

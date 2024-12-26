@@ -104,3 +104,22 @@ we can do route based protection based on the user role
 - to do that we need to know where the role is stored like cookie or figure out where to store the admin on the cookie
   redreict , rewrite url ,
   dont forget the matcher
+
+---
+
+# non-form server actions
+
+In Next.js, Server Actions are not limited to form submissions; they can be integrated into various parts of your application, such as event handlers and React hooks. This allows for dynamic server-side operations in response to user interactions or lifecycle events.
+
+we can use server actions on client component
+
+we can do useTransition when switching between tabs or showing some data which are not that important , bcs the heavy state changes or fetching will interupt the ui and not allow it to do anyting
+
+- we can revalidate after some time like every hour using
+  time based revalidation :
+  fetch("url", {next:{revalidate:3600}})
+  or export const revalidate=3600 on page or layout if its not using cookies
+
+on demand revalidation
+
+to opt out from cache we use revalidate =0 or no store
