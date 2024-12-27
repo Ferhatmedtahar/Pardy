@@ -11,13 +11,11 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="flex flex-col lg:flex-row w-screen h-screen">
-      {/* Sidebar */}
       <aside
         className={`fixed lg:relative ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } lg:translate-x-0 transition-transform duration-300 w-[200px] min-w-[200px] max-w-[200px] h-full lg:bg-black bg-gray-950  border-r border-default-50 z-50`}
       >
-        {/* Sidebar Header with Close Button */}
         <div className="flex items-center justify-between p-4 border-b border-default-50 lg:hidden">
           <h2 className="text-lg font-semibold">Menu</h2>
           <button
