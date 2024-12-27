@@ -1,6 +1,6 @@
 # Pardy
 
-["pardy is a event managment app"]("/public/image.png")
+["pardy is a event managment app"]("./public/image.png")
 
 Pardy is a modern event management application that allows users to create, manage, and interact with events efficiently. Built with **Next.js**, **Drizzle ORM**, and **SQLite**, it features a robust backend and an intuitive user interface.
 
