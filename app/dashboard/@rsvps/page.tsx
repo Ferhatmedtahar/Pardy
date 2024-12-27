@@ -34,9 +34,11 @@ const RsvpsSlot = async () => {
             }) => (
               <div
                 key={rsvps?.id || Math.random()}
-                className="border-b border-default-100 p-2 flex gap-2"
+                className="border-b border-default-100 p-2 flex gap-2 "
               >
-                <span>{attendees?.name || 'Unknown Attendee'}</span>
+                <span className="text-sm md:text-md lg:text-lg">
+                  {attendees?.name || 'Unknown Attendee'}
+                </span>
                 <span>
                   {rsvps ? (
                     <Chip

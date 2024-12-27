@@ -1,11 +1,10 @@
-// /components/Nav.tsx
 'use client'
 import { createNewEvent } from '@/actions/events'
 import { Button, Input, Tooltip } from '@nextui-org/react'
-import { CirclePlus } from 'lucide-react'
+import { CirclePlus, Menu } from 'lucide-react'
 import { useTransition } from 'react'
 
-const Nav = () => {
+const Nav = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
   const [isPending, startTransition] = useTransition()
 
   const handleClick = () => {
@@ -15,7 +14,15 @@ const Nav = () => {
   }
 
   return (
-    <nav className="h-[65px] border-b border-default-50 flex items-center px-6 gap-4">
+    <nav className="h-[65px] border-b border-default-50 flex items-center px-4 gap-4">
+      <button
+        className="lg:hidden p-2"
+        onClick={toggleSidebar}
+        aria-label="Toggle Sidebar"
+      >
+        <Menu size={24} />
+      </button>
+
       <div>
         <Tooltip content="New Event">
           <Button
@@ -29,8 +36,9 @@ const Nav = () => {
           </Button>
         </Tooltip>
       </div>
-      <div className="w-1/2">
-        <Input size="sm" variant="faded" placeholder="search" />
+
+      <div className="flex-1">
+        <Input size="sm" variant="faded" placeholder="Search" />
       </div>
     </nav>
   )
